@@ -1,0 +1,7 @@
+{
+    "name": "materia-multiplayer-server",
+    "version": "0.0.1",
+    "dependencies": {
+        "ws": "^8.5.0"
+    }
+}
