@@ -71,8 +71,6 @@ const handleNewGame = (session, client, payload) => {
 		// add new client to the list of clients of this game
 		game.clients.push({ playerId: payload.playerId, socket: client, status: '' })
 
-		// client.send(JSON.stringify(game.clients))
-
 	} else {
 		game = {
 			sessionId: session,
@@ -94,8 +92,6 @@ const handleNewGame = (session, client, payload) => {
 
 		games.push(game)
 	}
-
-	// client.send(JSON.stringify(games[session]))
 
 }
 
@@ -127,7 +123,6 @@ handlePlayerQueueStatus = (received, socket) => {
 		}
 	}
 	else if (received.payload.context == 'next-question') {
-
 		if (numReady < game.clients.length) {
 			game.clients.forEach((client) => {
 				client.socket.send(JSON.stringify({ message: 'game-status', payload: { status: 'waiting-for-remaining-players', numReady: numReady }}))
@@ -140,6 +135,7 @@ handlePlayerQueueStatus = (received, socket) => {
 				client.socket.send(JSON.stringify({ message: 'game-status', payload: { status: 'ready-for-next-question', timeline: game.questionTimeline }}))
 				client.status = 'waiting-for-next-question'
 			})
+			game.questionTimeline = []
 		}
 	}
 
