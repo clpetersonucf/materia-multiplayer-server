@@ -35,7 +35,7 @@ server.on('connection', (socket) => {
 	socket.on('close', () => {
 		sockets = sockets.filter(s => s !== socket)
 		// games = games.filter(game => game.clients.filter(client => client == socket).length == 0)
-		games = [] // TODO games should be culled after a certain period of time
+		// games = [] // TODO games should be culled after a certain period of time
 	})
 })
 
